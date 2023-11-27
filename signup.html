@@ -92,54 +92,54 @@
 
 function signUpValidation() {
    // Reset previous error messages
-   resetErrors();
+  //  resetErrors();
 
-  // Get form elements
-  var name = document.forms["signupForm"]["name"].value;
-  var email = document.forms["signupForm"]["email"].value;
-  var age = document.forms["signupForm"]["age"].value;
-  var sex = document.forms["signupForm"]["sex"].value;
-  var location = document.forms["signupForm"]["location"].value;
-  var profession = document.forms["signupForm"]["profession"].value;
-  var password = document.forms["signupForm"]["password"].value;
+  // // Get form elements
+  // var name = document.forms["signupForm"]["name"].value;
+  // var email = document.forms["signupForm"]["email"].value;
+  // var age = document.forms["signupForm"]["age"].value;
+  // var sex = document.forms["signupForm"]["sex"].value;
+  // var location = document.forms["signupForm"]["location"].value;
+  // var profession = document.forms["signupForm"]["profession"].value;
+  // var password = document.forms["signupForm"]["password"].value;
 
-  // Simple validation checks
-  if (name === "") {
-    displayError("nameError", "Name must be filled out");
-  }
+  // // Simple validation checks
+  // if (name === "") {
+  //   displayError("nameError", "Name must be filled out");
+  // }
 
-  if (email === "") {
-    displayError("emailError", "Email must be filled out");
-  }
+  // if (email === "") {
+  //   displayError("emailError", "Email must be filled out");
+  // }
 
-  if (age === "") {
-    displayError("ageError", "Age must be filled out");
-  }
+  // if (age === "") {
+  //   displayError("ageError", "Age must be filled out");
+  // }
 
-  if (sex === "") {
-    displayError("sexError", "Please select a sex");
-  }
+  // if (sex === "") {
+  //   displayError("sexError", "Please select a sex");
+  // }
 
-  if (location === "") {
-    displayError("locationError", "Location must be filled out");
-  }
+  // if (location === "") {
+  //   displayError("locationError", "Location must be filled out");
+  // }
 
-  if (profession === "") {
-    displayError("professionError", "Profession must be filled out");
-  }
+  // if (profession === "") {
+  //   displayError("professionError", "Profession must be filled out");
+  // }
 
-  if (password === "") {
-    displayError("passwordError", "Password must be filled out");
-  } else if (password.length < 8) {
-    displayError("passwordError", "Password must be at least 8 characters");
-  }
+  // if (password === "") {
+  //   displayError("passwordError", "Password must be filled out");
+  // } else if (password.length < 8) {
+  //   displayError("passwordError", "Password must be at least 8 characters");
+  // }
 
-  // Add more checks as needed
+  // // Add more checks as needed
 
-  // If there are errors, stop form submission
-  if (document.querySelectorAll('.error').length > 0) {
-    return false;
-  }
+  // // If there are errors, stop form submission
+  // if (document.querySelectorAll('.error').length > 0) {
+  //   return false;
+  // }
 
   // If all validations pass, redirect to the next page
   window.location.href = 'questionnaire.html';
