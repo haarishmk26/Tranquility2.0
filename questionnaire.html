@@ -178,32 +178,47 @@
 
         function showResults() {
             // Mapping numeric values to answers
-            const answers = {
-                q1: document.querySelector('input[name="q1"]:checked').value,
-                q2: document.querySelector('input[name="q2"]:checked').value,
-                q3: document.querySelector('input[name="q3"]:checked').value,
-                q4: document.querySelector('input[name="q4"]:checked').value,
-                q5: document.querySelector('input[name="q5"]:checked').value
+
+            
+                const answers = {
+                question1: document.querySelector('input[name="q1"]:checked').value,
+                question2: document.querySelector('input[name="q2"]:checked').value,
+                question3: document.querySelector('input[name="q3"]:checked').value,
+                question4: document.querySelector('input[name="q4"]:checked').value,
+                question5: document.querySelector('input[name="q5"]:checked').value
             };
+
+            data = {
+                "userid": 2,
+                "moodscore": 5,
+                "stresslevel": 3,
+                "sleepquality": 4,  
+                answers
+            }
 
             // Sending a POST request to the API
             fetch('http://localhost:3000/questionnaire', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ answers }),
+            method: 'POST', // The method is POST since you are sending data
+            headers: {
+                'Content-Type': 'application/json', // Specifying the content type as JSON
+            },
+            body: JSON.stringify({ // Converting the data object to a JSON string
+                userid: 2,
+                moodscore: 5,
+                stresslevel: 3,
+                sleepquality: 4,
+                question1: 2,
+                question2: 3,
+                question3: 4,
+                question4: 5,
+                question5: 1
             })
-            .then(response => response.json())
-            .then(data => {
-                alert('Quiz Completed! Display results or perform further actions here.');
-                // Handle the response data as needed
-                console.log(data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
+        })
+        .then(response => response.json()) // Parsing the JSON response
+        .then(data => console.log(data)) // Handling the data from the response
+        .catch(error => console.error('Error:', error)); // Handling any errors
+
+                }
     </script>
 
 </body>
