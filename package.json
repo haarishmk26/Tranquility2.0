@@ -1,4 +1,15 @@
 {
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.7.0"
+  },
   "dependencies": {
     "puppeteer": "^21.5.1"
   }
