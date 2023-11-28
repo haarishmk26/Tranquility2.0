@@ -1,4 +1,4 @@
-
+module.exports = { updateUserProfile, showVideo, getNextVideoId, runRecommendationEngine, randomVideoSuggestion, introduceDelay, delay };
 var videos_path_mapping = {
     0: "http://localhost:8000/video/Satisfying%20Video%20With%203D%20Animations%20&%20Relaxing%20Music%20(%20Endless%20).mp4",
     1: "http://localhost:8000/video/Relaxing%20Video%20for%20Stress%20Relief%20%F0%9F%8E%B6.mp4",
@@ -135,7 +135,8 @@ function getNextVideoId(userProfile) {
 }
 
 // Function to update user profile
- function updateUserProfile(userFeedback, videoId) {
+ //function updateUserProfile(userFeedback, videoId) { Haarish made changes
+function updateUserProfile(userProfile, userFeedback, videoId) {
         if (!(videoId in userProfile)) {
             userProfile[videoId] = userFeedback;
             console.log('updateUserProfile --> ', userProfile)
