@@ -32,9 +32,14 @@ To merge your changes into the main project, follow these steps:
 ## Test Cases
 Explore our detailed test cases to understand the functionalities better:
 
-- [videoGenreMapping Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/videoGenreMapping.spec.js)
-- [showVideo Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/showVideo.spec.js)
-- [profileUpdate Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/profileUpdate.spec.js)
-- [myvideoid Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/myvideoid.spec.js)
+
+- [Video Genre Mapping Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/videoGenreMapping.spec.js): This test case focuses on the mapping of video genres within the application.
+- [Show Video Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/showVideo.spec.js): It tests the functionality related to displaying videos.
+- [Profile Update Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/profileUpdate.spec.js): This ensures that user profile updates are handled correctly.
+- [My Video ID Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/myvideoid.spec.js): Tests the retrieval of video IDs for user-specific content.
+- [Tranquility Backend Routes Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/tranquility-backend-v1/routes.test.js): This test case is essential for ensuring the robustness and reliability of backend routes.
+
+
+Each test case is crafted to ensure that every aspect of Tranquility meets our high standards for quality and functionality. We encourage contributors to familiarize themselves with these tests to understand the core features and to assist in maintaining the integrity of the Tranquility platform.
 
 Join us in enhancing the Tranquility platform and creating an exceptional user experience!
