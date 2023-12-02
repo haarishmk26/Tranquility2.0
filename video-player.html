@@ -92,6 +92,23 @@
     </div>
 
     <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to set window.user_profile from the 'user_profile' query parameter
+        function setWindowUserProfile() {
+            const user_profile_param = getQueryParameter('user_profile');
+            if (user_profile_param) {
+                const user_profile = JSON.parse(decodeURIComponent(user_profile_param));
+                window.user_profile = user_profile;
+                console.log('window.user_profile set:', window.user_profile);
+            } else {
+                console.log('user_profile parameter not found in the URL');
+            }
+        }
+
         window.globalVar = "Hello, I am a global variable!";
         window.currentVideoIndex = 0;
 
