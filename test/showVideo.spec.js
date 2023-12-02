@@ -3,7 +3,7 @@
 // Test that the showVideo function retrieves the correct path from videos_path_mapping.
 // Test that showVideo calls playVideo with the correct path.
 
-const { showVideo } = require('./re.JS'); // Make sure this path is correct
+const { showVideo } = require('./recopy.JS'); // Make sure this path is correct
 
 describe('showVideo', () => {
   beforeEach(() => {
