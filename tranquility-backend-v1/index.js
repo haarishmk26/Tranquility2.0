@@ -6,12 +6,14 @@ const { Pool } = require('pg');
 app.use(cors());
 app.use(express.json());
 
+console.log("inside index.js"); 
+
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'tranquilityDatabase',
-  password: 'rohith',
-  port: 5433,
+  password: 'elonmusk26', //password changes wrt to your local machine
+  port: 5432,
 });
 
 /////////////
@@ -19,6 +21,7 @@ const pool = new Pool({
 ////////////
 //GET all users
 app.get('/users', async (req, res) => {
+  console.log("inside one /users");
   const client = await pool.connect();
   try {
     console.log("inside /users");
@@ -123,7 +126,7 @@ app.post('/userinteractionfeedback', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7040;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
