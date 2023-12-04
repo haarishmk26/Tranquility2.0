@@ -12,8 +12,8 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'tranquilityDatabase',
-  password: 'elonmusk26', //password changes wrt to your local machine
-  port: 5432,
+  password: '1234', //password changes wrt to your local machine
+  port: 5433,
 });
 
 /////////////

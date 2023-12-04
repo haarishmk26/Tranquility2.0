@@ -91,71 +91,61 @@
 <script>
 
 function signUpValidation() {
-   // Reset previous error messages
-  //  resetErrors();
 
-  // // Get form elements
-  // var name = document.forms["signupForm"]["name"].value;
-  // var email = document.forms["signupForm"]["email"].value;
-  // var age = document.forms["signupForm"]["age"].value;
-  // var sex = document.forms["signupForm"]["sex"].value;
-  // var location = document.forms["signupForm"]["location"].value;
-  // var profession = document.forms["signupForm"]["profession"].value;
-  // var password = document.forms["signupForm"]["password"].value;
+  // Get form elements
+  var name = document.forms["signupForm"]["name"].value;
+  var email = document.forms["signupForm"]["email"].value;
+  var age = document.forms["signupForm"]["age"].value;
+  var sex = document.forms["signupForm"]["sex"].value;
+  var location = document.forms["signupForm"]["location"].value;
+  var profession = document.forms["signupForm"]["profession"].value;
+  var password = document.forms["signupForm"]["password"].value;
 
-  // // Simple validation checks
-  // if (name === "") {
-  //   displayError("nameError", "Name must be filled out");
-  // }
+    fetch('http://localhost:7040/users', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          'username': name,
+          'email': email,
+          'passwordhash': password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the data from the response
+        console.log(data);
 
-  // if (email === "") {
-  //   displayError("emailError", "Email must be filled out");
-  // }
+        // Save the userid from the response
+        const userId = data.userid;
+        console.log(userId);
+        // Transition to 'questionnaire.html' and pass user_id as a query parameter
+        window.location.href = `questionnaire.html?user_id=${userId}`;
+    })
+    .catch(error => {
+          alert('Error: Duplicate email');
+          // Handle specific types of errors or log the error for debugging
+          if (error instanceof TypeError) {
+              console.error('Type error:', error.message);
+          } else {
+              console.error('Unexpected error:', error.message);
+          }
+      });
 
-  // if (age === "") {
-  //   displayError("ageError", "Age must be filled out");
-  // }
+    }
 
-  // if (sex === "") {
-  //   displayError("sexError", "Please select a sex");
-  // }
-
-  // if (location === "") {
-  //   displayError("locationError", "Location must be filled out");
-  // }
-
-  // if (profession === "") {
-  //   displayError("professionError", "Profession must be filled out");
-  // }
-
-  // if (password === "") {
-  //   displayError("passwordError", "Password must be filled out");
-  // } else if (password.length < 8) {
-  //   displayError("passwordError", "Password must be at least 8 characters");
-  // }
-
-  // // Add more checks as needed
-
-  // // If there are errors, stop form submission
-  // if (document.querySelectorAll('.error').length > 0) {
-  //   return false;
-  // }
-
-  // If all validations pass, redirect to the next page
-  window.location.href = 'questionnaire.html';
+  function displayError(id, message) {
+    var errorElement = document.getElementById(id);
+    errorElement.innerHTML = message;
   }
 
-function displayError(id, message) {
-  var errorElement = document.getElementById(id);
-  errorElement.innerHTML = message;
-}
-
-function resetErrors() {
-  var errorElements = document.querySelectorAll('.error');
-  errorElements.forEach(function (element) {
-    element.innerHTML = "";
-  });
-}
+  function resetErrors() {
+    var errorElements = document.querySelectorAll('.error');
+    errorElements.forEach(function (element) {
+      element.innerHTML = "";
+    });
+  }
 </script>
 </body>
 </html>
