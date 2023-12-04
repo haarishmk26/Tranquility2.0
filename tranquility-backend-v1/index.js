@@ -10,7 +10,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'tranquilityDatabase',
-  password: 'rohith',
+  password: '1234',
   port: 5433,
 });
 
@@ -151,7 +151,7 @@ app.post('/userinteractionfeedback', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7040;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

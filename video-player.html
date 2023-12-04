@@ -92,22 +92,22 @@
     </div>
 
     <script>
-        function getQueryParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
+        // function getQueryParameter(name) {
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     return urlParams.get(name);
+        // }
 
-        // Function to set window.user_profile from the 'user_profile' query parameter
-        function setWindowUserProfile() {
-            const user_profile_param = getQueryParameter('user_profile');
-            if (user_profile_param) {
-                const user_profile = JSON.parse(decodeURIComponent(user_profile_param));
-                window.user_profile = user_profile;
-                console.log('window.user_profile set:', window.user_profile);
-            } else {
-                console.log('user_profile parameter not found in the URL');
-            }
-        }
+        // // Function to set window.user_profile from the 'user_profile' query parameter
+        // function setWindowUserProfile() {
+        //     const user_profile_param = getQueryParameter('user_profile');
+        //     if (user_profile_param) {
+        //         const user_profile = JSON.parse(decodeURIComponent(user_profile_param));
+        //         window.user_profile = user_profile;
+        //         console.log('window.user_profile set:', window.user_profile);
+        //     } else {
+        //         console.log('user_profile parameter not found in the URL');
+        //     }
+        // }
 
         window.globalVar = "Hello, I am a global variable!";
         window.currentVideoIndex = 0;
@@ -129,14 +129,15 @@
 
         }
         function setEmotion(feedback) {
-            console.log('HTML; Emotion Button Click Function: Inside the function setEmotion')
-            console.log('userProfile ', userProfile)
-            console.log('Set Emotion: Feedback', feedback)
-            console.log('Set Emotion: currentVideoIndex', currentVideoIndex)
-            //alert('Emotion set to: ' + emotion);
-            updateUserProfile(feedback, currentVideoIndex)
-            playNextVideo()
-        }
+        console.log('HTML; Emotion Button Click Function: Inside the function setEmotion')
+        console.log('userProfile ', window.userProfile) // Access the userProfile from the window object
+        console.log('Set Emotion: Feedback', feedback)
+        console.log('Set Emotion: currentVideoIndex', window.currentVideoIndex) // Access the currentVideoIndex from the window object
+        //alert('Emotion set to: ' + emotion);
+        updateUserProfile(window.userProfile, feedback, window.currentVideoIndex); // Pass the userProfile to the function
+        playNextVideo();
+    }
+
     </script>
 
 
