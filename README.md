@@ -33,10 +33,10 @@ To merge your changes into the main project, follow these steps:
 Explore our detailed test cases to understand the functionalities better:
 
 
-- [Video Genre Mapping Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/videoGenreMapping.spec.js): This test case focuses on the mapping of video genres within the application.
-- [Show Video Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/showVideo.spec.js): It tests the functionality related to displaying videos.
-- [Profile Update Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/profileUpdate.spec.js): This ensures that user profile updates are handled correctly.
-- [My Video ID Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/myvideoid.spec.js): Tests the retrieval of video IDs for user-specific content.
+- [Video Genre Mapping Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/test/videoGenreMapping.spec.js): This test case focuses on the mapping of video genres within the application.
+- [Show Video Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/test/showVideo.spec.js): It tests the functionality related to displaying videos.
+- [Profile Update Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/test/profileUpdate.spec.js): This ensures that user profile updates are handled correctly.
+- [My Video ID Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/test/html.spec.js): Tests the retrieval of video IDs for user-specific content.
 - [Tranquility Backend Routes Test Case](https://github.com/NehaMadnani/Tranquility/blob/main/tranquility-backend-v1/routes.test.js): This test case is essential for ensuring the robustness and reliability of backend routes.
 
 
