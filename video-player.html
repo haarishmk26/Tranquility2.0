@@ -92,51 +92,179 @@
     </div>
 
     <script>
-        function getQueryParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-        // Function to set window.user_profile from the 'user_profile' query parameter
-        function setWindowUserProfile() {
-            const user_profile_param = getQueryParameter('user_profile');
-            if (user_profile_param) {
-                const user_profile = JSON.parse(decodeURIComponent(user_profile_param));
-                window.user_profile = user_profile;
-                console.log('window.user_profile set:', window.user_profile);
-            } else {
-                console.log('user_profile parameter not found in the URL');
-            }
+        // Get user_id and user_profile from the URL
+        var userId = getParameterByName('user_id');
+        var userProfileString = getParameterByName('user_profile');
+
+        // Parse the user_profile JSON string
+        var userProfile;
+        try {
+            userProfile = JSON.parse(userProfileString);
+        } catch (error) {
+            console.error('Error parsing user_profile:', error);
         }
+
+        // Now, you can use userId and userProfile in your video-player.html as needed
+        console.log('userId:', userId);
+        console.log('userProfile:', userProfile);
+
+
+        // function getQueryParam(parameter) {
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     return urlParams.get(parameter);
+        // }
+
+        // // Get the user_id from the query parameter
+        // const userId = getQueryParam('user_id');
+        // const userProfile = getQueryParam('user_profile');
+
+        // Check if userId is not null or undefined before using it
+        if (userId) {
+            // Now you can use the userId as needed, for example, you can log it
+            console.log('User ID:', userId);
+            // You can also save it to a variable, use it in an API call, or perform any other actions.
+        } else {
+            console.error('User ID not found in the query parameters.');
+        }
+        // function getQueryParameter(name) {
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     return urlParams.get(name);
+        // }
+
+        // // Function to set window.user_profile from the 'user_profile' query parameter
+        // function setWindowUserProfile() {
+        //     const user_profile_param = getQueryParameter('user_profile');
+        //     if (user_profile_param) {
+        //         const user_profile = JSON.parse(decodeURIComponent(user_profile_param));
+        //         window.user_profile = user_profile;
+        //         console.log('window.user_profile set:', window.user_profile);
+        //     } else {
+        //         console.log('user_profile parameter not found in the URL');
+        //     }
+        // }
 
         window.globalVar = "Hello, I am a global variable!";
         window.currentVideoIndex = 0;
 
         // Change this value wrt the onboarding mentalScore
 
-        window.userProfile = {12:3 }
+        // window.userProfile = {12:3 }
         //{12:3}  Exercise // If score<=10
         // {7:3}  Relaxing // If score>10
 
         // JavaScript function to play the next video
+        // function playNextVideo() {
+        //     console.log('HTML; Button Click Function: Inside the function playNextVideo')
+        //     currentVideoIndex = getNextVideoId(userProfile);
+        //     showVideo(currentVideoIndex); // remove the userProfile
+
+        //     console.log('HTML; PlayNext Video Funtion; CurrentVideoIndex', currentVideoIndex)
+        //     console.log('HTML; PlayNext Video Funtion; userProfile ', userProfile)
+
+        // }
+
         function playNextVideo() {
-            console.log('HTML; Button Click Function: Inside the function playNextVideo')
-            currentVideoIndex = getNextVideoId(userProfile);
-            showVideo(currentVideoIndex); // remove the userProfile
-
-            console.log('HTML; PlayNext Video Funtion; CurrentVideoIndex', currentVideoIndex)
-            console.log('HTML; PlayNext Video Funtion; userProfile ', userProfile)
-
+        console.log('HTML; Button Click Function: Inside the function playNextVideo')
+        if (userProfile[20] === 3) {
+            // Users who are less likely to be depressed. Comedy. Motivation. Exercise.
+                if (window.currentVideoIndex === 0) {
+                    currentVideoIndex = 13; // Comedy
+                } else if (window.currentVideoIndex === 13) {
+                    window.currentVideoIndex = 11; // Motivation
+                } else if (window.currentVideoIndex === 11) {
+                    window.currentVideoIndex = 3; // Exercise
+                } else {
+                    window.currentVideoIndex = getNextVideoId(userProfile);
+                }
         }
+        else {   // Users who are more likely to be depressed. Calming. Satisfaction. ASMR.
+            if (window.currentVideoIndex === 0) {
+                window.currentVideoIndex = 1; // Calming
+            } else if (window.currentVideoIndex === 1) {
+                window.currentVideoIndex = 6; // Satisfaction / ASMR
+            } else if (window.currentVideoIndex === 6) {
+                window.currentVideoIndex =  4; // ASMR
+            } else {
+                // console.log('!!!!!!!!!!!!ELSE ELSEEEE!!!!!!!!!!!!')
+                window.currentVideoIndex = getNextVideoId(userProfile);
+            }
+        }
+
+    showVideo(window.currentVideoIndex); // remove the userProfile
+
+    console.log('HTML; PlayNext Video Funtion; CurrentVideoIndex', currentVideoIndex)
+    console.log('HTML; PlayNext Video Funtion; userProfile ', userProfile)
+
+}
         function setEmotion(feedback) {
-            console.log('HTML; Emotion Button Click Function: Inside the function setEmotion')
-            console.log('userProfile ', userProfile)
-            console.log('Set Emotion: Feedback', feedback)
-            console.log('Set Emotion: currentVideoIndex', currentVideoIndex)
-            //alert('Emotion set to: ' + emotion);
-            updateUserProfile(feedback, currentVideoIndex)
-            playNextVideo()
-        }
+        console.log('HTML; Emotion Button Click Function: Inside the function setEmotion')
+        console.log('userProfile ', window.userProfile) // Access the userProfile from the window object
+        console.log('Set Emotion: Feedback', feedback)
+        console.log('Set Emotion: currentVideoIndex', window.currentVideoIndex) // Access the currentVideoIndex from the window object
+        //alert('Emotion set to: ' + emotion);
+        updateUserProfile(window.userProfile, feedback, window.currentVideoIndex); // Pass the userProfile to the function
+        playNextVideo();
+    }
+
+//     function setEmotion(feedback) {
+//     console.log('HTML; Emotion Button Click Function: Inside the function setEmotion');
+//     console.log('userProfile ', window.userProfile);
+//     console.log('Set Emotion: Feedback', feedback);
+//     console.log('Set Emotion: currentVideoIndex', window.currentVideoIndex);
+
+//     let reaction;
+//     switch (feedback) {
+//         case 1:
+//             reaction = 'liked';
+//             break;
+//         case 2:
+//             reaction = 'uncertain';
+//             break;
+//         case 3:
+//             reaction = 'disliked';
+//             break;
+//         default:
+//             console.error('Invalid feedback value:', feedback);
+//             return;
+//     }
+
+//     // Make a POST request to /userinteractionfeedback
+//     fetch('/userinteractionfeedback', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//             userid: window.userId,
+//             mediaid: window.currentVideoIndex,
+//             reaction: reaction,
+//         }),
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log('Response from /userinteractionfeedback:', data);
+//         // Handle the response as needed
+//     })
+//     .catch(error => {
+//         console.error('Error making POST request to /userinteractionfeedback:', error);
+//         // Handle the error as needed
+//     });
+
+//     // Continue with other actions if necessary
+//     playNextVideo();
+// }
+
     </script>
 
 

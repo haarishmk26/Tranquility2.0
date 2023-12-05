@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4; /* Set a background color for the body */
+        }
+
+        #video-container {
+            position: relative;
+            width: 7cm; /* Adjusted width of 9 cm */
+            height: auto; /* Maintain the aspect ratio */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+        }
+
+        #myVideo {
+            width: 100%;
+            height: 100%;
+        }
+
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3498db; /* Blue color for the button */
+            color: #fff; /* White color for the text */
+            padding: 8px 16px; /* Adjusted padding for the button */
+            border: none;
+            border-radius: 5px;
+            font-size: 14px; /* Adjusted font size for the button */
+            cursor: pointer;
+        }
+
+        #emotionButtons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .emotionButton {
+            padding: 12px 24px; /* Increased padding for the buttons */
+            font-size: 35px; /* Increased font size for the buttons */
+            cursor: pointer;
+        }
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3498db; /* Blue color for the button */
+            color: #fff; /* White color for the text */
+            padding: 8px 16px; /* Adjusted padding for the button */
+            border: none;
+            border-radius: 5px;
+            font-size: 14px; /* Adjusted font size for the button */
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<script src="re.js"></script>
+
+
+    <div id="video-container">
+        <!-- Video player element with controls -->
+        <video id="myVideo" controls>  <!-- myVideo is the formatting piece -->
+            <source id="videoSource" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+       <!-- <button id="playNextButton" onclick="playNextVideo()">Play Next Video</button> -->
+    </div>
+
+    <!-- Emotion buttons -->
+    <div id="emotionButtons">
+        <button class="emotionButton" onclick="setEmotion(1)">🙁</button> <!-- Sad -->
+        <button class="emotionButton" onclick="setEmotion(2)">😐</button><!-- Neutral -->
+        <button class="emotionButton" onclick="setEmotion(3)">😀</button><!-- Happy -->
+    </div>
+
+    <script>
+        window.globalVar = "Hello, I am a global variable!";
+        window.userProfile = {5:3} // Change this value wrt the onboarding mentalScore
+        window.currentVideoIndex = 0;
+
+
+        // JavaScript function to play the next video
+        function playNextVideo() {
+            console.log('HTML; Button Click Function: Inside the function playNextVideo')
+            currentVideoIndex = getNextVideoId(userProfile);
+            showVideo(currentVideoIndex); // remove the userProfile
+
+            console.log('HTML; PlayNext Video Funtion; CurrentVideoIndex', currentVideoIndex)
+            console.log('HTML; PlayNext Video Funtion; userProfile ', userProfile)
+
+        }
+        function setEmotion(feedback) {
+            console.log('HTML; Emotion Button Click Function: Inside the function setEmotion')
+            console.log('userProfile ', userProfile)
+            console.log('Set Emotion: Feedback', feedback)
+            console.log('Set Emotion: currentVideoIndex', currentVideoIndex)
+            //alert('Emotion set to: ' + emotion);
+            updateUserProfile(feedback, currentVideoIndex)
+            playNextVideo()
+        }
+    </script>
+
+
+</body>
+</html>
+
+
+

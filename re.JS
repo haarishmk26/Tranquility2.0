@@ -1,4 +1,4 @@
-//module.exports = { updateUserProfile, showVideo, getNextVideoId, runRecommendationEngine, randomVideoSuggestion, introduceDelay, delay };
+// module.exports = { updateUserProfile, showVideo, getNextVideoId, runRecommendationEngine, randomVideoSuggestion, introduceDelay, delay };
 var videos_path_mapping = {
     0: "http://localhost:8000/video/Satisfying%20Video%20With%203D%20Animations%20&%20Relaxing%20Music%20(%20Endless%20).mp4",
     1: "http://localhost:8000/video/Relaxing%20Video%20for%20Stress%20Relief%20%F0%9F%8E%B6.mp4",
@@ -43,7 +43,9 @@ var videos_genre_mapping = {
     16: [0, 1, 0, 0, 0, 1],
     17: [1, 0, 0, 0, 0, 0],
     18: [0, 0, 0, 1, 0, 0],
-    19: [0, 0, 0, 1, 0, 1]
+    19: [0, 0, 0, 1, 0, 1],
+    20: [0, 0, 0, 0, 0, 0], // Score >10
+    21: [0, 0, 0, 0, 0, 0], // Score <10
 };
 
 // Function to play video
@@ -191,4 +193,3 @@ window.onload = function () {
     console.log("Window Onload function triggered");
     playNextVideo();
 }
-

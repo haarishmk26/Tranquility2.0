@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sign Up Page</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-image: url('blue-bg-image.png'); 
-    background-color: #f0f5f9;
-    /* 
-    background-color: #f4f4f4; Replace 'background.jpg'
-     with the path to your image file 
-     background-position: center;
-     */
-    background-size: cover; 
-    display: flex;
-    background-repeat: repeat;
-    justify-content: center;
-    align-items: center; 
-    height: 100vh;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+      body {
+      font-family: Arial, sans-serif;
+      background-image: url('blue-bg-image.png'); 
+      background-color: #f0f5f9;
+      background-size: cover; 
+      display: flex;
+      background-repeat: repeat;
+      justify-content: center;
+      align-items: center; 
+      height: 100vh;
+    }
+    .signin {
+      width: 60%;
+      margin: auto;
+      text-align: center;
+      padding: 40px;
+      font-size: 30px;
   }
-  
-  form {
-    background-color: #ffffff;
-    padding: 40px 40px 40px 20px; /* Reduce left padding */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 300px; /* Set a specific width for the form */
-}
-  input, select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #008CBA;
-    color: white;
-    cursor: pointer;
-  }
-  .sex{
-    width: cover;
-  }
-
-</style>
+    </style>
 </head>
+
 <body>
 
-<form>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Sign In</button>
-</form>
+   
+
+    <form id="signInForm">
+      <div class="signin">Sign In</div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="button" onclick="signIn()">Sign In</button>
+    </form>
+
+    <script>
+        async function signIn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`http://localhost:7040/signin?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Sign-in successful
+                    console.log('Sign-in successful:', data);
+
+                    // Redirect to questionnaire.html with user ID as a query parameter
+                    const userId = data.userid;
+                    window.location.href = `questionnaire.html?user_id=${userId}`;
+                } else {
+                    // Sign-in failed
+                    console.error('Sign-in failed:', data.message);
+                    // You can display an error message to the user
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Handle network or other errors here
+            }
+        }
+    </script>
 
 </body>
 </html>

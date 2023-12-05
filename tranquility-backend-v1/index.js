@@ -10,7 +10,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'tranquilityDatabase',
-  password: 'rohith',
+  password: '1234',
   port: 5433,
 });
 
@@ -96,6 +96,39 @@ app.post('/users', async (req, res) => {
   }
 });
 
+//sign-in 
+
+// Validate user credentials for sign-in
+app.get('/signin', async (req, res) => {
+  const { email, password } = req.query;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required for sign-in.' });
+  }
+
+  const client = await pool.connect();
+  try {
+    console.log(`Validating user credentials for email: ${email}`);
+    const response = await client.query('SELECT * FROM users WHERE email = $1 AND passwordhash = $2', [email, password]);
+
+    if (response.rows.length > 0) {
+      // User found, credentials are valid
+      const userid = response.rows[0].userid; // Get the userid from the response
+      res.json({ success: true, message: 'Sign-in successful.', userid });
+    } else {
+      // User not found or credentials are invalid
+      res.status(401).json({ success: false, message: 'Invalid email or password.' });
+    }
+  } catch (err) {
+    console.error(`Error validating user credentials: ${err.message}`);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  } finally {
+    client.release();
+  }
+});
+
+
+
 //insert questionnaire details
 app.post('/questionnaire', async (req, res) => {
   const client = await pool.connect();
@@ -151,7 +184,7 @@ app.post('/userinteractionfeedback', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7040;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
